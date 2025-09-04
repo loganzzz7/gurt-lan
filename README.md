@@ -7,7 +7,7 @@
 6. **codegen.py** — Python emitter (string or ast module).
 7. **cli.py** — run|build commands.
 8. **tests/** — unit + golden + error tests.
-9. **examples/** — the sample programs scoped in step 0.
+9. **examples/** — the sample programs` scoped in step 0.
 
 ## Scope (Features):
 | .py | .gurt |
@@ -26,6 +26,8 @@
 | False | cap |
 
 ### TODO Additional Features:
+| .py | .gurt |
+| -------- | ------- |
 | continue | edge |
 | break | goon |
 
