@@ -14,7 +14,7 @@ print_stmt  ::= "" "(" expr ")"
 
 if_stmt     ::= "ts" "(" expr ")" block [ "pmo" block ]
 while_stmt  ::= "mewstreak" "(" expr ")" block
-block       ::= "skibidi" { stmt } "toilet"
+block       ::= "6ix" { stmt } "7even"
 
 expr        ::= equality
 equality    ::= comparison { ( "==" | "twin" ) comparison }
