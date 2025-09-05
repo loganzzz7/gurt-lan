@@ -1,5 +1,5 @@
 # .gurt Overview
-1. **Grammar.md** — tokens + EBNF + examples.
+1. **grammar.md** — tokens + EBNF + examples.
 2. **lexer.py** — tokenize(src) -> [Token].
 3. **ast_nodes.py** — dataclasses for nodes.
 4. **parser.py** — produces AST + error recovery.
