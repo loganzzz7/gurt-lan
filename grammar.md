@@ -10,17 +10,17 @@ stmt        ::= set_stmt SYBAU
               | block
 
 set_stmt    ::= "gurt" IDENT "yo" expr
-print_stmt  ::= "" "(" expr ")"
+print_stmt  ::= "yap" "(" expr ")"
 
 if_stmt     ::= "ts" "(" expr ")" block [ "pmo" block ]
 while_stmt  ::= "mewstreak" "(" expr ")" block
-block       ::= "6{" { stmt } "}7"
+block       ::= "6ix" { stmt } "7even"
 
 expr        ::= equality
 equality    ::= comparison { ( "==" | "twin" ) comparison }
 comparison  ::= term { ( ">" | "<" | "mogged" | "chopped" ) term }
 term        ::= factor { ( "+" | "-" | "buff" | "nerf" ) factor }
-factor      ::= unary  { ( "*" | "bulk" | "/" | "ratio" ) unary }
+factor      ::= unary  { ( "*" | "fanumtax" | "/" | "ratio" ) unary }
 unary ::= ( "-" ) unary               /* numeric negation */
         | ( "not" ) unary             /* boolean negation */
         | primary

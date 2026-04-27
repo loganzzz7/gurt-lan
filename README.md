@@ -9,37 +9,45 @@
 8. **tests/** — unit + golden + error tests.
 9. **examples/** — the sample programs` scoped in step 0.
 
+## Components:
+![Transpiler Components](/assets/transpiler_gurt_to_py.png)
+
 ## Scope (Features):
 | .py | .gurt |
 | -------- | ------- |
-| print | yo |
+| set | gurt |
+| = | yo |
+| print | yap |
 | if | ts |
 | else | pmo |
 | while | mewstreak |
-| == | twin|
+| { | 6ix |
+| } | 7even |
+| == | twin |
 | new-line | sybau |
 | > (greater than) | mogged |
 | < (lesser than) | chopped |
 | + (add) | buff |
 | - (subtract) | nerf |
+| * (multiply) | fanumtax |
+| / (divide) | ratio |
 | True | ong |
 | False | cap |
 
-### TODO Additional Features:
+### Additional Features:
 | .py | .gurt |
 | -------- | ------- |
 | continue | edge |
 | break | goon |
 
-## TODO EBNF (grammar):
+## EBNF (grammar.md):
 - Define tokens & grammar in EBNF.
-- Lock in keywords, operators, whitespace/comments, and error sync points (; and }).
+- Lock in keywords, operators, whitespace/comments, and error sync points (`;` and `}`).
 
-## TODO Tokenizer / Lexer (Written in Python):
+## TODO Tokenizer / Lexer (lexer.py):
 - Implement a hand-rolled lexer in Python that:
-    - Streams characters → tokens with type, lexeme, value, line, col.
+    - Streams characters -> tokens with type, lexeme, value, line, col.
     - Handles identifiers/keywords, numbers, strings, operators, delimiters, comments.
-- Tests: property tests for “round trip” on operators/keywords; fuzz a few random inputs; assert line/column tracking.
 
 ## TODO Parser -> Concrete Syntax Tree -> Abstract Syntax Tree (Written in Python):
 - Hand-written recursive-descent.
