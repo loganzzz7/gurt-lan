@@ -1,12 +1,12 @@
 from lexer.lexer import Lexer
 from tokens.tokens import *
-from ast.ast_nodes import *
+from ast_nodes.ast_nodes import *
 
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
         self.pos = 0
-        self.curr_token = self.tokens[pos]
+        self.curr_token = self.tokens[self.pos]
     
     def advance(self):
         self.pos += 1
@@ -29,21 +29,25 @@ class Parser:
     
     def parse_stmt(self):
         # stmt => set_stmt | print_stmt | if_stmt | while_stmt | block
+        # skip empty
+        while self.curr_token.type == TT_SYBAU:
+            self.advance()
+        
         if self.curr_token.type == TT_GURT:
             # this is a set stmt: let var = r-value
-            self.parse_let()
-        elif self.curr_token == TT_YAP:
+            return self.parse_let()
+        elif self.curr_token.type == TT_YAP:
             # this is a print stmt
-            self.parse_print()
-        elif self.curr_token == TT_TS:
+            return self.parse_print()
+        elif self.curr_token.type == TT_TS:
             # if_stmt
-            self.parse_if()
-        elif self.curr_token == TT_MEWSTREAK:
+            return self.parse_if()
+        elif self.curr_token.type == TT_MEWSTREAK:
             # while_stmt
-            self.parse_while()
-        elif self.curr_token == TT_BLOCK_START:
+            return self.parse_while()
+        elif self.curr_token.type == TT_BLOCK_START:
             # block
-            self.parse_block()
+            return self.parse_block()
         else:
             # expr_stmt
             expr = self.parse_expr()
@@ -130,7 +134,7 @@ class Parser:
         while self.curr_token.type in (TT_MOGGED, TT_CHOPPED):
             op = self.curr_token.value
             self.advance()
-            right = self.parse_factor()
+            right = self.parse_term()
             left = BinOp(op, left, right)
         return left
     
@@ -151,7 +155,7 @@ class Parser:
             op = self.curr_token.value
             self.advance()
             right = self.parse_unary()
-            left = UnaryOp(op, left, right)
+            left = BinOp(op, left, right)
         return left
 
     def parse_unary(self):
@@ -159,10 +163,20 @@ class Parser:
         if self.curr_token.type in (TT_NERF, TT_NOT):
             op = self.curr_token.value
             self.advance()
+            expr = self.parse_unary()
+            return UnaryOp(op, expr)
+        return self.parse_primary()
+        
+    def parse_primary(self):
+        # primary => NUMBER | STRING | "ong" | "cap" | IDENT | "(" expr ")"
+        if self.curr_token.type == TT_INT:
+            value = self.curr_token.value
+            self.advance()
             return Literal(value)
         elif self.curr_token.type == TT_FLOAT:
             value = self.curr_token.value
             self.advance()
+            return Literal(value)
         elif self.curr_token.type == TT_ONG:
             self.advance()
             return Literal(True)
@@ -179,4 +193,4 @@ class Parser:
             self.expected_token(TT_RPAREN)
             return expr
         else:
-            raise Exception(f"Unexpected token type: {self.curr_token}")
+            raise Exception(f"Unexpected token--{self.curr_token}")
